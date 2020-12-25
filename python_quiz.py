@@ -5,7 +5,7 @@ New Python Quiz without explicit dictionary
 
 from question_database import question_list
 
-
+rounding_decimal = 2
 
 def get_answer(question):
     print(question.prompt)  # print question
@@ -26,7 +26,7 @@ def get_answer(question):
         return answer_value
 
     except:
-        print("\"" + answer + "\" is not a valid option. Please try again.")
+        print("\"" + answer + "\" is not a valid option. Please try again.\n")
         return get_answer(question)
 
 def run_quiz(questions):
@@ -41,13 +41,13 @@ def run_quiz(questions):
 
     risk_score = (score * 100) / len(questions)
 
-    print("Your risk score is " + str(round(risk_score,3)) + "%")
+    print("Your risk score is " + str(round(risk_score,rounding_decimal)) + "%")
 
     if risk_score >= 90:
         print("You are at very high risk. Please contact a medical professional immediately.")
-    elif 65 <= risk_score < 90:
+    elif 70 <= risk_score < 90:
         print("You are potentially at a high risk. Please contact a medical professional as soon as possible.")
-    elif 25 <= risk_score < 65:
+    elif 25 <= risk_score < 70:
         print("You are potentially at risk. Please contact a medical professional in the near future.")
     else:
         print("You are not at risk. Contact a medical professional for a more reliable diagnosis.")
