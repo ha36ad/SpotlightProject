@@ -1,3 +1,8 @@
+'''
+New Python Quiz without explicit dictionary
+
+'''
+
 class Question:
     def __init__(self, prompt, questions, inputs):
         self.prompt = prompt
@@ -20,19 +25,18 @@ question_list = [q1, q2]
 def get_answer(question):
     print(question.prompt)  # print question
     i = 0
-    for option in options:
+    for option in question.options:
         text = "(" + str(i+1) + ") " + option
         print(text)
         i += 1
 
-    answer = input()
-    answer_index = (int(answer)-1)
-
     try:
+        answer = input()
+        answer_index = (int(answer) - 1)
         if len(question.inputs) > answer_index >= 0:
             return inputs[answer_index]
     except:
-        print("\"" + answer + "\" is an invalid option. Please try again")
+        print("\"" + answer + "\" is not a valid option. Please try again.")
         return get_answer(question)
 
 def run_quiz(questions):
