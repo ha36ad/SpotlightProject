@@ -4,21 +4,22 @@ New Python Quiz without explicit dictionary
 '''
 
 class Question:
-    def __init__(self, prompt, questions, inputs):
+    def __init__(self, prompt, options, values):
         self.prompt = prompt
         self.options = options
-        self.inputs = inputs
+        self.values = values
 
 
 prompt = ["Have you felt chest pain in the past week?",
-          "Have you experienced dizziness in the past week?"]
+          "Have you experienced dizziness in the past week?",
+          "Have you experienced shortness of breath in the past week?"]
 
 options = ["Yes, on multiply occasions", "Yes, sometimes", "Yes, but rarely", "No"]
 
-inputs = [ 1, 0.75, 0.5, 0]
+values = [1, 0.75, 0.5, 0]
 
-q1 = Question(prompt[0], options, inputs)
-q2 = Question(prompt[1], options, inputs)
+q1 = Question(prompt[0], options, values)
+q2 = Question(prompt[1], options, values)
 
 question_list = [q1, q2]
 
@@ -32,9 +33,14 @@ def get_answer(question):
 
     try:
         answer = input()
-        answer_index = (int(answer) - 1)
-        if len(question.inputs) > answer_index >= 0:
-            return inputs[answer_index]
+        answer_index = int(answer) - 1
+        #print (str(answer_index))
+        #print(str(question.values[answer_index]))
+
+        answer_value = question.values[answer_index]
+
+        return answer_value
+
     except:
         print("\"" + answer + "\" is not a valid option. Please try again.")
         return get_answer(question)
@@ -46,7 +52,8 @@ def run_quiz(questions):
     score = 0
 
     for question in questions:
-        score += float(get_answer(question))
+        answer = get_answer(question)
+        score += answer
 
     risk_score = (score * 100) / len(questions)
 
@@ -62,5 +69,5 @@ def run_quiz(questions):
     else:
         print("You are not at risk. Contact a medical professional for a more reliable diagnosis.")
 
-
+get_answer(q1)
 run_quiz(question_list)
