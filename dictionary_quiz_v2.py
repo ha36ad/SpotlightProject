@@ -20,8 +20,9 @@ values = [1, 0.75, 0.5, 0]
 
 q1 = Question(prompt[0], options, values)
 q2 = Question(prompt[1], options, values)
+q3 = Question(prompt[2], options, values)
 
-question_list = [q1, q2]
+question_list = [q1, q2, q3]
 
 def get_answer(question):
     print(question.prompt)  # print question
@@ -57,7 +58,7 @@ def run_quiz(questions):
 
     risk_score = (score * 100) / len(questions)
 
-    print("Your risk score is " + str(risk_score) + "%")
+    print("Your risk score is " + str(round(risk_score,3)) + "%")
 
 
     if risk_score >= 90:
@@ -69,5 +70,4 @@ def run_quiz(questions):
     else:
         print("You are not at risk. Contact a medical professional for a more reliable diagnosis.")
 
-get_answer(q1)
 run_quiz(question_list)
