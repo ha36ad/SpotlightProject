@@ -60,7 +60,6 @@ def run_quiz(questions):
 
     print("Your risk score is " + str(round(risk_score,3)) + "%")
 
-
     if risk_score >= 90:
         print("You are at very high risk. Please contact a medical professional immediately.")
     elif 65 <= risk_score < 90:
