@@ -1,6 +1,18 @@
 import tkinter as tk
 from question_database_tuples import question_list
 
+def risk(risk_score):
+    print("Your risk score is " + str(round(risk_score, rounding_decimal)) + "%")
+
+    if risk_score >= 90:
+        print("You are at very high risk. Please contact a medical professional immediately.")
+    elif 70 <= risk_score < 90:
+        print("You are potentially at a high risk. Please contact a medical professional as soon as possible.")
+    elif 25 <= risk_score < 70:
+        print("You are potentially at risk. Please contact a medical professional in the near future.")
+    else:
+        print("You are not at risk. Contact a medical professional for a more reliable diagnosis.")
+
 #constants
 HEIGHT= 800
 WIDTH = 800
@@ -32,16 +44,7 @@ def onClick(answer):
     else:
         risk_score = (sum (answer_list) * 100) / len(question_list)
 
-        print("Your risk score is " + str(round(risk_score,rounding_decimal)) + "%")
-
-        if risk_score >= 90:
-            print("You are at very high risk. Please contact a medical professional immediately.")
-        elif 70 <= risk_score < 90:
-            print("You are potentially at a high risk. Please contact a medical professional as soon as possible.")
-        elif 25 <= risk_score < 70:
-            print("You are potentially at risk. Please contact a medical professional in the near future.")
-        else:
-            print("You are not at risk. Contact a medical professional for a more reliable diagnosis.")
+        risk(risk_score)
 
 #Canvas
 canvas=tk.Canvas(root,height = HEIGHT, width = WIDTH)

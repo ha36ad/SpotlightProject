@@ -17,6 +17,7 @@ options = [("Yes, on multiple occasions.", "1"),
             ("Yes, sometimes.", "0.75"),
             ("Yes, but rarely.","0.5"),
             ("No","0"),]
+
 two_options = [("Yes","1"),( "No", "0")]
 
 q1 = Question(prompt[0], options)
@@ -25,3 +26,4 @@ q3 = Question(prompt[2], options)
 q4 = Question(prompt[3], two_options)
 
 question_list = [q1, q2, q3, q4]
+
