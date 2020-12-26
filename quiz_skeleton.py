@@ -1,49 +1,12 @@
 import tkinter as tk
-import os
-from question_database import question_list
+from question_database_tuples import question_list
 
 #constants
 HEIGHT= 800
 WIDTH = 800
 rounding_decimal = 2
 
-#Questions class
-class Question:
-    def __init__(self, prompt, options):
-        self.prompt = prompt
-        self.options = options
-        
-prompt = ["Have you felt chest pain in the past week?",
-          "Have you experienced dizziness in the past week?",
-          "Have you experienced shortness of breath in the past week?"]
-
-options = [
-    ("Yes, on multiple occasions", "1"),
-    ("Yes, sometimes", "0.75"),  
-    ("Yes, but rarely", "0.5"),
-    ("No","0"), 
-    ]
-
-
-#Questions
-q1 = Question(prompt[0], options)
-q2 = Question(prompt[1], options)
-q3 = Question(prompt[2], options)
-question_list = [q1, q2, q3]
-
 root=tk.Tk()
-
-#canvas
-canvas=tk.Canvas(root,height=HEIGHT, width= WIDTH)
-canvas.pack()
-
-#frame
-frame = tk.Frame(root,bg='gray')
-frame.place(relx=0.1,rely=0.1, relwidth=0.8, relheight=0.8)
-
-#Intialization of variables
-answer_list = []
-next_question = 1
 
 #Click function
 def onClick(answer):
@@ -53,8 +16,19 @@ def onClick(answer):
 
     answer_list.append(float(answer))
     if next_question < len(question_list):
+        #clear second frame so new options are generated
+        for child in frame2.winfo_children():
+            child.destroy()
+
+        #Display next question
         question.config(text=question_list[next_question].prompt)
+
+        #Recreate options and next button
+        create_options(next_question)
+        create_next()
+
         next_question += 1
+
     else:
         risk_score = (sum (answer_list) * 100) / len(question_list)
 
@@ -68,21 +42,40 @@ def onClick(answer):
             print("You are potentially at risk. Please contact a medical professional in the near future.")
         else:
             print("You are not at risk. Contact a medical professional for a more reliable diagnosis.")
-    
 
+#Canvas
+canvas=tk.Canvas(root,height = HEIGHT, width = WIDTH)
+canvas.pack()
+
+#Frame
+frame = tk.Frame(root,bg ='gray')
+frame2 = tk.Frame(frame,bg ='gray')
+frame.place(relx = 0.1,rely = 0.1, relwidth = 0.8, relheight = 0.8)
+frame2.place (relx = 0.1,rely = 0.1, relwidth = 0.8, relheight = 0.8)
+
+#Intialization of variables
+answer_list = []
+next_question = 1
+
+#Next Button
+def create_next():
+    next_button=tk.Button(frame2,text="Next",command=lambda: onClick(index.get()))
+    next_button.pack()
 
 #Question
-question= tk.Label(frame,text=question_list[0].prompt) 
+question= tk.Label(frame, font = ("Gotham", 16), width = 500,justify = "center", wraplength = 400, text = question_list[0].prompt) 
 question.pack()
 
 #Buttons
-index = tk.StringVar()
-for text, option in options:
-    tk.Radiobutton(frame, text=text, variable=index, value= option).pack()
+index = tk.StringVar(value = "1")
 
-#Next Button
-next_button=tk.Button(frame,text="Next",command=lambda: onClick(index.get()))
-next_button.pack()
+def create_options(i):
+    for text, option in question_list[i].options:
+        tk.Radiobutton(frame2, text = text ,font = ("Gotham",14),background = 'gray',padx = 10, pady = 10, variable = index, value = option).pack()
+
+    
+create_options(0)
+create_next()
 
 root.mainloop()
 
