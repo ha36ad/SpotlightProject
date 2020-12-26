@@ -19,5 +19,6 @@ values = [1, 0.75, 0.5, 0]
 q1 = Question(prompt[0], options, values)
 q2 = Question(prompt[1], options, values)
 q3 = Question(prompt[2], options, values)
+q4 = Question("Do you have any pre-existing conditions?", ["Yes", "No"], [1, 0])
 
-question_list = [q1, q2, q3]
+question_list = [q1, q2, q3, q4]
