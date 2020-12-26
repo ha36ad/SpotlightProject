@@ -18,7 +18,7 @@ prompt = ["Have you felt chest pain in the past week?",
           "Have you experienced shortness of breath in the past week?"]
 
 options = [
-    ("Yes, on multiply occasions", "1"),
+    ("Yes, on multiple occasions", "1"),
     ("Yes, sometimes", "0.75"),  
     ("Yes, but rarely", "0.5"),
     ("No","0"), 
