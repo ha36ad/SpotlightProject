@@ -8,7 +8,9 @@ def risk_print(risk_score):
         print("You are at very high risk. Please contact a medical professional immediately.")
     elif 70 <= risk_score < 90:
         print("You are potentially at a high risk. Please contact a medical professional as soon as possible.")
-    elif 25 <= risk_score < 70:
+    elif 50 <= risk_score < 70:
+        print("You are potentially at moderate risk. Please contact a medical professional as soon as it is convenient.")
+    elif 25 <= risk_score < 50:
         print("You are potentially at risk. Please contact a medical professional in the near future.")
     else:
         print("You are not at risk. Contact a medical professional for a more reliable diagnosis.")
