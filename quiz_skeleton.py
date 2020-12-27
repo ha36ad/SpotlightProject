@@ -1,7 +1,7 @@
 import tkinter as tk
 from question_database_tuples import question_list
 
-def risk(risk_score):
+def risk_print(risk_score):
     print("Your risk score is " + str(round(risk_score, rounding_decimal)) + "%")
 
     if risk_score >= 90:
@@ -44,7 +44,7 @@ def onClick(answer):
     else:
         risk_score = (sum (answer_list) * 100) / len(question_list)
 
-        risk(risk_score)
+        risk_print(risk_score)
 
 #Canvas
 canvas=tk.Canvas(root,height = HEIGHT, width = WIDTH)
