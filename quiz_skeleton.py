@@ -1,6 +1,7 @@
 import tkinter as tk
 from question_database_tuples import question_list
 
+# ideally if we can have this risk function go to the database for easier maintenace
 def risk_print(risk_score):
     print("Your risk score is " + str(round(risk_score, rounding_decimal)) + "%")
 
