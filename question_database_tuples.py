@@ -6,7 +6,6 @@ class Question:
     def __init__(self, prompt, options):
         self.prompt = prompt
         self.options = options
-    
 
 prompt = ["Have you felt chest pain in the past week?",
           "Have you experienced dizziness in the past week?",
@@ -16,7 +15,7 @@ prompt = ["Have you felt chest pain in the past week?",
 options = [("Yes, on multiple occasions.", "1"), 
             ("Yes, sometimes.", "0.75"),
             ("Yes, but rarely.","0.5"),
-            ("No","0"),]
+            ("No","0")]
 
 two_options = [("Yes","1"),( "No", "0")]
 

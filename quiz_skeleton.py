@@ -9,7 +9,8 @@ def risk_print(risk_score):
     elif 70 <= risk_score < 90:
         print("You are potentially at a high risk. Please contact a medical professional as soon as possible.")
     elif 50 <= risk_score < 70:
-        print("You are potentially at moderate risk. Please contact a medical professional as soon as it is convenient.")
+        print("You are potentially at moderate risk. "
+              "Please contact a medical professional as soon as it is convenient.")
     elif 25 <= risk_score < 50:
         print("You are potentially at risk. Please contact a medical professional in the near future.")
     else:
@@ -68,7 +69,8 @@ def create_next():
     next_button.pack()
 
 #Question
-question= tk.Label(frame, font = ("Gotham", 16), width = 500,justify = "center", wraplength = 400, text = question_list[0].prompt) 
+question= tk.Label(frame, font = ("Gotham", 16), width = 500,justify = "center", wraplength = 400,
+                   text = question_list[0].prompt)
 question.pack()
 
 #Buttons
@@ -76,7 +78,8 @@ index = tk.StringVar(value = "1")
 
 def create_options(i):
     for text, option in question_list[i].options:
-        tk.Radiobutton(frame2, text = text ,font = ("Gotham",14),background = 'gray',padx = 10, pady = 10, variable = index, value = option).pack()
+        tk.Radiobutton(frame2, text = text ,font = ("Gotham",14),
+                       background = 'gray',padx = 10, pady = 10, variable = index, value = option).pack()
 
     
 create_options(0)
