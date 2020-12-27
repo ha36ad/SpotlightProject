@@ -1,6 +1,8 @@
 '''
 Question Database File
 '''
+#Constants
+rounding_decimal = 2
 
 class Question:
     def __init__(self, prompt, options):
@@ -24,5 +26,21 @@ q2 = Question(prompt[1], options)
 q3 = Question(prompt[2], options)
 q4 = Question(prompt[3], two_options)
 
+#Calculate risk score
+def risk_print(risk_score):
+    print("Your risk score is " + str(round(risk_score, rounding_decimal)) + "%")
+
+    if risk_score >= 90:
+        print("You are at very high risk. Please contact a medical professional immediately.")
+    elif 70 <= risk_score < 90:
+        print("You are potentially at a high risk. Please contact a medical professional as soon as possible.")
+    elif 50 <= risk_score < 70:
+        print("You are potentially at moderate risk. "
+              "Please contact a medical professional as soon as it is convenient.")
+    elif 25 <= risk_score < 50:
+        print("You are potentially at risk. Please contact a medical professional in the near future.")
+    else:
+        print("You are not at risk. Contact a medical professional for a more reliable diagnosis.")
+        
 question_list = [q1, q2, q3, q4]
 
