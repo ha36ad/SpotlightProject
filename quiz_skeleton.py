@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
-from question_database_tuples import question_list
+import question_database_tuples as qd
 
 #constants
 HEIGHT= 800
