@@ -14,12 +14,15 @@ def onClick(answer):
     global question
     global next_question
 
-    answer_list.append(float(answer))
-    if next_question < len(qd.question_list):
-        #clear second frame so new options are generated
-        for child in frame2.winfo_children():
-            child.destroy()
+    # clear second frame so new options are generated
+    for child in frame2.winfo_children():
+        child.destroy()
 
+    answer_list.append(float(answer))
+
+
+
+    if next_question < len(qd.question_list):
         #Display next question
         question.config(text=qd.question_list[next_question].prompt)
 
@@ -56,17 +59,13 @@ frame2.place (relx = 0.1,rely = 0.1, relwidth = 0.8, relheight = 0.8)
 
 #Intialization of variables
 answer_list = []
-next_question = 1
-index = tk.StringVar(value = "1")
+next_question = 0
+index = tk.StringVar(value = "0")
 
 #Next Button
 def create_next():
     next_button=tk.Button(frame2, font = ("Gotham", 16), text="Next",command=lambda: onClick(index.get()))
-    next_button.pack()
-
-#Question
-question= tk.Label(frame, font = ("Gotham", 16), width = 500,justify = "center", wraplength = 400, text = qd.question_list[0].prompt)
-question.pack()
+    next_button.pack(pady=30,padx = 10)
 
 #Progress bar
 def show_progress(percent):
@@ -82,12 +81,24 @@ def create_options(i):
     for text, option in qd.question_list[i].options:
         tk.Radiobutton(frame2, text = text ,font = ("Gotham",14),background = 'gray',padx = 10, pady = 10, variable = index, value = option).pack()
 
+
+
 #Create the progres bar,  the first question's options, and the progress bar
-create_options(0)
+'''
+
+'''
+
+question = tk.Label(frame, font=("Gotham", 16), width=500, justify="center", wraplength=400,
+                            text="Welcome")
+question.pack()
+
+
+instructions = tk.Label(frame2, font=("Gotham", 16), width=500, justify="center", wraplength=400,
+                            text="Instructions: Click on the option that best describes your situation")
+instructions.pack()
+
 create_next()
-show_progress(1/len(qd.question_list)*100)
-
-
+show_progress(0)
 root.mainloop()
 
 
