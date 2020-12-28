@@ -69,8 +69,8 @@ question= tk.Label(frame, font = ("Gotham", 16), width = 500,justify = "center",
 question.pack()
 
 #Progress bar
-def show_progress(number):
-    progress_bar = tk.ttk.Progressbar(frame2, orient = tk.HORIZONTAL, length = 500, mode ='determinate', value = number)
+def show_progress(percent):
+    progress_bar = tk.ttk.Progressbar(frame2, orient = tk.HORIZONTAL, length = 500, mode ='determinate', value = percent    )
     progress_bar.pack(pady=20,padx = 10)
     progress_text = tk.Label(frame2, font=("Gotham", 16), width=500, justify="center", wraplength=400,
                          text="Progress: " + str(next_question) + " out of " + str(len(qd.question_list)))
