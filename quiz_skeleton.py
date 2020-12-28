@@ -54,23 +54,28 @@ def create_next():
     next_button.pack()
 
 #Question
-question= tk.Label(frame, font = ("Gotham", 16), width = 500,justify = "center", wraplength = 400, text = qd.question_list[0].prompt) 
+question= tk.Label(frame, font = ("Gotham", 16), width = 500,justify = "center", wraplength = 400, text = qd.question_list[0].prompt)
 question.pack()
 
 #Progress bar
 def show_progress(number):
-    progress_bar = tk.ttk.Progressbar(frame2, orient = tk.HORIZONTAL, length = 100, mode ='determinate', value = number)
+    progress_bar = tk.ttk.Progressbar(frame2, orient = tk.HORIZONTAL, length = 500, mode ='determinate', value = number)
     progress_bar.pack(pady=20,padx = 10)
+    progress_text = tk.Label(frame2, font=("Gotham", 16), width=500, justify="center", wraplength=400,
+                         text=str(next_question) + " out of " + str(len(qd.question_list)))
+    progress_text.pack()
+
 
 #Create options
 def create_options(i):
     for text, option in qd.question_list[i].options:
         tk.Radiobutton(frame2, text = text ,font = ("Gotham",14),background = 'gray',padx = 10, pady = 10, variable = index, value = option).pack()
 
-#Create the progres bar,  the first question's options, and the progress bar    
+#Create the progres bar,  the first question's options, and the progress bar
 create_options(0)
-show_progress(0)
 create_next()
+show_progress(1/len(qd.question_list)*100)
+
 
 root.mainloop()
 
