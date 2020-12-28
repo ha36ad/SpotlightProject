@@ -26,6 +26,23 @@ q2 = Question(prompt[1], options)
 q3 = Question(prompt[2], options)
 q4 = Question(prompt[3], two_options)
 
+def return_risk_text(risk_score):
+    return "Your risk score is " + str(round(risk_score, rounding_decimal)) + "%"
+
+def return_risk_suggestion(risk_score):
+    suggestion = ""
+    if risk_score >= 90:
+        suggestion = "You are at very high risk. Please contact a medical professional immediately."
+    elif 70 <= risk_score < 90:
+        suggestion ="You are potentially at a high risk. Please contact a medical professional as soon as possible."
+    elif 50 <= risk_score < 70:
+        suggestion ="You are potentially at moderate risk. Please contact a medical professional as soon as it is convenient."
+    elif 25 <= risk_score < 50:
+        suggestion ="You are potentially at risk. Please contact a medical professional in the near future."
+    else:
+        suggestion ="You are not at risk. Contact a medical professional for a more reliable diagnosis."
+    return suggestion
+
 #Calculate risk score
 def risk_print(risk_score):
     print("Your risk score is " + str(round(risk_score, rounding_decimal)) + "%")

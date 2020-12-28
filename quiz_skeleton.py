@@ -33,6 +33,17 @@ def onClick(answer):
         risk_score = (sum (answer_list) * 100) / len(qd.question_list)
         qd.risk_print(risk_score)
 
+        # clear second frame so new options are generated
+        for child in frame2.winfo_children():
+            child.destroy()
+
+        # Display next question
+        question.config(text=qd.return_risk_text(risk_score))
+
+        suggestion_text = tk.Label(frame2, font=("Gotham", 16), width=500, justify="center", wraplength=400,
+                                 text=qd.return_risk_suggestion(risk_score))
+        suggestion_text.pack()
+
 #Canvas
 canvas=tk.Canvas(root,height = HEIGHT, width = WIDTH)
 canvas.pack()
@@ -62,7 +73,7 @@ def show_progress(number):
     progress_bar = tk.ttk.Progressbar(frame2, orient = tk.HORIZONTAL, length = 500, mode ='determinate', value = number)
     progress_bar.pack(pady=20,padx = 10)
     progress_text = tk.Label(frame2, font=("Gotham", 16), width=500, justify="center", wraplength=400,
-                         text=str(next_question) + " out of " + str(len(qd.question_list)))
+                         text="Progress: " + str(next_question) + " out of " + str(len(qd.question_list)))
     progress_text.pack()
 
 
