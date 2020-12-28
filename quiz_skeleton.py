@@ -61,7 +61,7 @@ index = tk.StringVar(value = "1")
 
 #Next Button
 def create_next():
-    next_button=tk.Button(frame2,text="Next",command=lambda: onClick(index.get()))
+    next_button=tk.Button(frame2, font = ("Gotham", 16), text="Next",command=lambda: onClick(index.get()))
     next_button.pack()
 
 #Question
